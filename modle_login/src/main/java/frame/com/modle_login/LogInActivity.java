@@ -75,8 +75,5 @@ public class LogInActivity extends BaseMvpActivity<LogInDetailModel, LogInDetail
     }
 
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public <T> void onEvent(BaseActivityEvent<T> event) {
-    }
 
 }

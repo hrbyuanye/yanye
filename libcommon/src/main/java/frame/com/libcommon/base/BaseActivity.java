@@ -61,9 +61,6 @@ public abstract class BaseActivity extends RxAppCompatActivity {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public <T> void onEvent(BaseActivityEvent<T> event) {
-        if (event==null){
-            return;
-        }
     }
 
     public View inflate(int resId) {

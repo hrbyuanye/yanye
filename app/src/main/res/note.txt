@@ -1,0 +1,2 @@
+1.eventbus只跟 key相关的
+onEvent(key)  key 不同  可以收到不同的消息

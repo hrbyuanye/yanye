@@ -8,8 +8,14 @@ import android.view.View;
 import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
+import frame.com.libcommon.I.IEventCode;
 import frame.com.libcommon.I.IRoutPath;
 import frame.com.libcommon.base.BaseMvpActivity;
+import frame.com.libcommon.event.BaseActivityEvent;
 import frame.com.libcommon.provider.IBijiProvider;
 import frame.com.libcommon.provider.IJiaoCaiProvider;
 import frame.com.libcommon.provider.IWoDeProvider;
@@ -52,6 +58,17 @@ public class ModleMainActivity extends BaseMvpActivity<MainModle, MainlContract.
 
     @Override
     public void initView() {
+//         eventBus只跟key相关 只跟key相关
+//        this.findViewById(R.id.btn_event).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                EventBus.getDefault().post(new BaseActivityEvent<>(IEventCode.IMainCode.TestMain));
+//                EventBus.getDefault().post(new BaseActivityEvent<>(IEventCode.ILogInCode.TestLogIn));
+//                EventBus.getDefault().post(new BaseActivityEvent<>(IEventCode.IReaderCode.TestReader));
+//                EventBus.getDefault().post(new BaseActivityEvent<>(IEventCode.IZuoYeCode.TestZuoYe));
+//                EventBus.getDefault().post(new BaseActivityEvent<>(IEventCode.IWoDeCode.TestWoDe));
+//            }
+//        });
         navigation = this.findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(menuItem -> {
             int i = menuItem.getItemId();
@@ -166,6 +183,5 @@ public class ModleMainActivity extends BaseMvpActivity<MainModle, MainlContract.
     public void hideInitLoadView() {
 
     }
-
 
 }

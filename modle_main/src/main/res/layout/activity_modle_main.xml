@@ -23,4 +23,10 @@
         app:itemTextColor="@color/color_state_menu_navi"
         app:labelVisibilityMode="labeled"
         app:menu="@menu/menu_navigation" />
+
+    <Button
+        android:text="测试eventBus"
+        android:id="@+id/btn_event"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 </RelativeLayout>
