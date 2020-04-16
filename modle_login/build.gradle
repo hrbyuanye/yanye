@@ -1,0 +1,17 @@
+apply from: "../module.build.gradle"
+
+android {
+    defaultConfig {
+        if (isModule.toBoolean()) {
+            applicationId "frame.com.modle_login"
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(':libcommon')
+    annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
+    annotationProcessor rootProject.ext.dependencies["dagger-compiler"]
+    annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
+}

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_jc"
+        android:icon="@drawable/icon_main_jc"
+        android:title="教材"/>
+
+    <item
+        android:id="@+id/navigation_yd"
+        android:icon="@drawable/icon_main_yd"
+        android:title="阅读"/>
+
+    <item
+        android:id="@+id/navigation_bj"
+        android:icon="@drawable/icon_main_bj"
+        android:title="笔记"/>
+
+    <item
+        android:id="@+id/navigation_zy"
+        android:icon="@drawable/icon_main_zy"
+        android:title="作业"/>
+
+    <!--<item-->
+        <!--android:id="@+id/navigation_rw"-->
+        <!--android:icon="@drawable/icon_main_rw"-->
+        <!--android:title="任务"/>-->
+
+    <!--<item-->
+        <!--android:id="@+id/navigation_ct"-->
+        <!--android:icon="@drawable/icon_main_ct"-->
+        <!--android:title="错题本"/>-->
+    <item
+        android:id="@+id/navigation_wd"
+        android:icon="@drawable/icon_main_wd"
+        android:title="我的"/>
+
+</menu>
