@@ -1,6 +1,7 @@
 package frame.com.libcommon;
 
 import android.content.Context;
+import android.support.multidex.MultiDex;
 import android.support.multidex.MultiDexApplication;
 
 import com.alibaba.android.arouter.launcher.ARouter;
@@ -14,11 +15,6 @@ public class BaseApplication extends MultiDexApplication {
     @Override
     public void onCreate() {
         super.onCreate();
-    }
-
-    @Override
-    protected void attachBaseContext(Context base) {
-        super.attachBaseContext(base);
         application = this;
 //        if (BuildConfig.IS_DEBUG) {           // 这两行必须写在init之前，否则这些配置在init过程中将无效
 //            ARouter.openLog();     // 打印日志
@@ -28,6 +24,13 @@ public class BaseApplication extends MultiDexApplication {
         ARouter.openLog();
         ARouter.init(this); // 尽可能早，推荐在Application中初始化
         KLog.init(true);
+    }
+
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
     }
 
     public static BaseApplication getApplication() {
