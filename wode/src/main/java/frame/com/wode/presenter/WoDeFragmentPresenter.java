@@ -6,7 +6,7 @@ import frame.com.libcommon.mvp.BasePresenter;
 import frame.com.wode.contract.WoDeFragmentContract;
 import frame.com.wode.modle.WoDeFragmentModle;
 
-public class WoDeFragmentPresenter extends BasePresenter<WoDeFragmentModle, WoDeFragmentContract.IView> implements WoDeFragmentContract.IPresenter{
+public class WoDeFragmentPresenter extends BasePresenter<WoDeFragmentModle, WoDeFragmentContract.IView> implements WoDeFragmentContract.IPresenter {
 
     public WoDeFragmentPresenter(Context context) {
         super(context);
@@ -19,16 +19,16 @@ public class WoDeFragmentPresenter extends BasePresenter<WoDeFragmentModle, WoDe
 
     @Override
     public void gotoWifi() {
-
+        mModel.gotoWifi();
     }
 
     @Override
     public void gotoTest(Class<?> clas) {
-
+        mModel.gotoTest(clas);
     }
 
     @Override
     public void gotoSetting() {
-
+        mModel.gotoSetting();
     }
 }

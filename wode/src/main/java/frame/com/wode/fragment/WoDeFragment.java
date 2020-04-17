@@ -1,23 +1,25 @@
 package frame.com.wode.fragment;
 
-import android.app.Activity;
 import android.view.View;
+import android.widget.FrameLayout;
 
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
-
-import frame.com.libcommon.base.BaseFragment;
+import butterknife.BindView;
+import butterknife.OnClick;
 import frame.com.libcommon.base.BaseMvpFragment;
-import frame.com.libcommon.event.BaseActivityEvent;
-import frame.com.libcommon.event.BaseFragmentEvent;
 import frame.com.libcommon.util.log.KLog;
 import frame.com.wode.R;
+import frame.com.wode.R2;
+import frame.com.wode.activity.NetTeastActivity;
 import frame.com.wode.contract.WoDeFragmentContract;
 import frame.com.wode.modle.WoDeFragmentModle;
 import frame.com.wode.presenter.WoDeFragmentPresenter;
 
 public class WoDeFragment extends BaseMvpFragment<WoDeFragmentModle, WoDeFragmentContract.IView, WoDeFragmentPresenter> implements WoDeFragmentContract.IView {
 
+    @BindView(R2.id.fm_test)
+    FrameLayout fmTest;
+    @BindView(R2.id.fm_setting)
+    FrameLayout fmSetting;
 
     public static WoDeFragment newInstance() {
         KLog.e("我的");
@@ -31,7 +33,6 @@ public class WoDeFragment extends BaseMvpFragment<WoDeFragmentModle, WoDeFragmen
 
     @Override
     public void initView() {
-
     }
 
     @Override
@@ -72,5 +73,16 @@ public class WoDeFragment extends BaseMvpFragment<WoDeFragmentModle, WoDeFragmen
     @Override
     public void hideInitLoadView() {
 
+    }
+
+    @OnClick({R2.id.fm_test, R2.id.fm_setting})
+    public void onViewClicked(View view) {
+        int i = view.getId();
+        if (i == R.id.fm_test) {
+            mPresenter.gotoTest(NetTeastActivity.class);
+
+        } else if (i == R.id.fm_setting) {
+            mPresenter.gotoSetting();
+        }
     }
 }
