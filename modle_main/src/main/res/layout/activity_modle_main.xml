@@ -25,6 +25,7 @@
         app:menu="@menu/menu_navigation" />
 
     <Button
+        android:visibility="gone"
         android:text="测试eventBus"
         android:id="@+id/btn_event"
         android:layout_width="match_parent"

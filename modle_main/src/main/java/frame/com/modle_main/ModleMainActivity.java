@@ -30,6 +30,7 @@ import frame.com.modle_main.presenter.MainPresenter;
 public class ModleMainActivity extends BaseMvpActivity<MainModle, MainlContract.IView, MainPresenter> implements MainlContract.IView {
     BottomNavigationView navigation;
 
+
     @Autowired(name = IRoutPath.IProviderPath.JiaoCaiPath)
     IJiaoCaiProvider mJiaoCaiProvider;
     private Fragment mJiaoCaiFragment;
@@ -44,12 +45,14 @@ public class ModleMainActivity extends BaseMvpActivity<MainModle, MainlContract.
 
     @Autowired(name = IRoutPath.IProviderPath.ZuoYePath)
     IZuoYeProvider mZuoYeProvider;
-    private Fragment mZuoYeFragment;
+    private Fragment mZuoYeFragment ;
+
 
     @Autowired(name = IRoutPath.IProviderPath.WoDePath)
     IWoDeProvider mWoDeProvider;
     private Fragment mWoDeFragment;
     private Fragment mCurrFragment;
+
 
     @Override
     public View bindLayout() {
@@ -69,6 +72,9 @@ public class ModleMainActivity extends BaseMvpActivity<MainModle, MainlContract.
 //                EventBus.getDefault().post(new BaseActivityEvent<>(IEventCode.IWoDeCode.TestWoDe));
 //            }
 //        });
+
+
+
         navigation = this.findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(menuItem -> {
             int i = menuItem.getItemId();
@@ -183,5 +189,7 @@ public class ModleMainActivity extends BaseMvpActivity<MainModle, MainlContract.
     public void hideInitLoadView() {
 
     }
+
+
 
 }
