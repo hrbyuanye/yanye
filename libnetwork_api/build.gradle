@@ -41,7 +41,7 @@ dependencies {
     api rootProject.ext.dependencies["guava"]
     api rootProject.ext.dependencies["logging-interceptor"]
     api rootProject.ext.dependencies["rxjava2-adapter"]
-//    api rootProject.ext.dependencies["rxjava2-rxandroid"]
+    api rootProject.ext.dependencies["rxjava2-rxandroid"]
 
     api rootProject.ext.dependencies["rxandroid"]
     api rootProject.ext.dependencies["gson"]

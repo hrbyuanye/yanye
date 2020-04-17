@@ -28,6 +28,10 @@ android {
 
 dependencies {
     api fileTree(include: ['*.jar'], dir: 'libs')
+    api project(':libnetwork_api')
+
+
+
     api rootProject.ext.support["design"]
     api rootProject.ext.support["support-v4"]
     api rootProject.ext.support["appcompat-v7"]
@@ -46,5 +50,5 @@ dependencies {
     api rootProject.ext.dependencies["gson"]
     api rootProject.ext.dependencies["rxpermissions"]
 
-    implementation project(':libnetwork_api')
+
 }

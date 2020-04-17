@@ -44,7 +44,7 @@ ext {
             "rxlifecycle"           : "com.trello.rxlifecycle2:rxlifecycle:2.2.1",
             "rxlifecycle-android"   : "com.trello.rxlifecycle2:rxlifecycle-android:2.2.1",
             "rxlifecycle-components": "com.trello.rxlifecycle2:rxlifecycle-components:2.2.1",
-            "gson"                  : "com.google.code.gson:gson:2.6.1",
+            "gson"                  : "com.google.code.gson:gson:2.7",
             "rxpermissions"         : "com.github.tbruyelle:rxpermissions:0.10.2",
 
             "retrofit"              : "com.squareup.retrofit2:retrofit:2.3.0",
@@ -54,7 +54,7 @@ ext {
             "guava"                 : "com.google.guava:guava:23.3-android",
             "logging-interceptor"   : "com.squareup.okhttp3:logging-interceptor:3.8.1",
             "rxjava2-adapter"       : "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0",
-//            "rxjava2-rxandroid"     : "io.reactivex.rxjava2:rxandroid:2.2.3",
+            "rxjava2-rxandroid"     : "io.reactivex.rxjava2:rxandroid:2.0.1",
             "rxandroid"             : "io.reactivex:rxandroid:1.2.1",
     ]
 
