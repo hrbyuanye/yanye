@@ -1,7 +1,13 @@
 package frame.com.wode.api;
 
+import com.trello.rxlifecycle2.LifecycleProvider;
+
 import frame.com.libcommon.I.IUrlConfig;
 import frame.com.libnetwork_api.ApiBase;
+import frame.com.libnetwork_api.BaseResult;
+import frame.com.wode.api.bean.UserInfo;
+import io.reactivex.Observable;
+import io.reactivex.Observer;
 
 public class  WoDeNetworkApi extends ApiBase {
     private static volatile WoDeNetworkApi instance = null;
@@ -23,9 +29,13 @@ public class  WoDeNetworkApi extends ApiBase {
         return instance;
     }
 
-    public void  logIn(){
-
-        ApiSubscribe();
+    /**
+     * 判断设备是否绑定
+     * @param deviceId
+     * @param observer
+     * @param lifecycl
+     */
+    public void  isDeviceBinding (String deviceId ,Observer observer ,LifecycleProvider lifecycl){
+        ApiSubscribe(mServers.isDeviceBinding(deviceId) ,observer,lifecycl) ;
     }
-
 }

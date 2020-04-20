@@ -27,7 +27,7 @@ public class BaseApplication extends MultiDexApplication {
     }
 
     private void initNetworkRequestInfo(){
-        ApiBase.setNetworkRequestInfo(new AppNetworkRequestInfo());
+        ApiBase.initNetworkRequestInfo(new AppNetworkRequestInfo());
     }
 
 

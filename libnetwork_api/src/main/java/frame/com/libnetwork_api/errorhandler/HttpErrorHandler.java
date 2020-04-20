@@ -11,6 +11,8 @@ import io.reactivex.functions.Function;
 public class HttpErrorHandler<T> implements Function<Throwable, Observable<T>> {
     @Override
     public io.reactivex.Observable<T> apply(Throwable throwable) throws Exception {
+        System.out.println("HttpErrorHandler..."+throwable.getMessage());
+
         return io.reactivex.Observable.error(ExceptionHandler.handleException(throwable));
     }
 }

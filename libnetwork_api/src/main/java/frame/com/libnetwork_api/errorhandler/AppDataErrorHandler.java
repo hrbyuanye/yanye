@@ -9,13 +9,10 @@ import io.reactivex.functions.Function;
 public class AppDataErrorHandler implements Function<BaseResult, BaseResult> {
     @Override
     public BaseResult apply(BaseResult response) throws Exception {
-
-        if (response instanceof BaseResult && response.code != ExceptionHandler.APP_ERROR.SUCC)
-          //  throw new RuntimeException(response.code + "" + (response.msg != null ? response.msg : ""));
-           //TODO: 做一些 业务上的处理
-            /**交给ExceptionHandler 处理 并且暴露 回调 error*/
-            throw  new ExceptionHandler.ServerException(response.code,response.msg);
-
+        if (response instanceof BaseResult && response.code != ExceptionHandler.APP_ERROR.SUCC) {
+            System.out.println("AppDataErrorHandler..."+response.toString());
+            throw new ExceptionHandler.ServerException(response.code, response.msg);
+        }
         return response;
     }
 }
