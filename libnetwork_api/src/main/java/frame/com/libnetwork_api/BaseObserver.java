@@ -73,6 +73,7 @@ public abstract class BaseObserver<T> implements Observer<BaseResult<T>> {
      * 不必每个人都需要实现该 方法 需要使用 重新该方法
      */
     public void  onResultComplete(){
+        //TODO:  need user
 
     }
 }
