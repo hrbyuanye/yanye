@@ -1,17 +1,21 @@
 package frame.com.libnetwork_api.errorhandler;
 
-import frame.com.libnetwork_api.BaseResponse;
+import frame.com.libnetwork_api.BaseResult;
 import io.reactivex.functions.Function;
 
 /**
  * 应用数据的错误会抛RuntimeException；
  */
-public class AppDataErrorHandler implements Function<BaseResponse, BaseResponse> {
+public class AppDataErrorHandler implements Function<BaseResult, BaseResult> {
     @Override
-    public BaseResponse apply(BaseResponse response) throws Exception {
-        //response中code码不会0 出现错误
-        if (response instanceof BaseResponse && response.code != 0)
-            throw new RuntimeException(response.code + "" + (response.msg != null ? response.msg : ""));
+    public BaseResult apply(BaseResult response) throws Exception {
+
+        if (response instanceof BaseResult && response.code != ExceptionHandler.APP_ERROR.SUCC)
+          //  throw new RuntimeException(response.code + "" + (response.msg != null ? response.msg : ""));
+           //TODO: 做一些 业务上的处理
+            /**交给ExceptionHandler 处理 并且暴露 回调 error*/
+            throw  new ExceptionHandler.ServerException(response.code,response.msg);
+
         return response;
     }
 }

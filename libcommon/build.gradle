@@ -28,7 +28,7 @@ android {
 
 dependencies {
     api fileTree(include: ['*.jar'], dir: 'libs')
-    api project(':libnetwork_api')
+//    api project(':libnetwork_api')
 
 
 
@@ -48,7 +48,7 @@ dependencies {
     api rootProject.ext.dependencies["rxlifecycle-android"]
     api rootProject.ext.dependencies["rxlifecycle-components"]
     api rootProject.ext.dependencies["gson"]
-    api rootProject.ext.dependencies["rxpermissions"]
+   // api rootProject.ext.dependencies["rxpermissions"]
 
 
 }
