@@ -15,6 +15,10 @@ android {
         versionName rootProject.ext.android.versionName
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        packagingOptions {
+            //解决编译时com.android.builder.merge.DuplicateRelativeFileException: More than one file was found with OS independent path 'META-INF/rxjava.properties'这个错误
+            exclude 'META-INF/rxjava.properties'
+        }
     }
     buildTypes {
         release {
