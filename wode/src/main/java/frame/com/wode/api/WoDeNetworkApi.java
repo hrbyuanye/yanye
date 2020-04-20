@@ -1,5 +1,6 @@
 package frame.com.wode.api;
 
+
 import com.trello.rxlifecycle2.LifecycleProvider;
 
 import frame.com.libcommon.I.IUrlConfig;
@@ -30,9 +31,23 @@ public class  WoDeNetworkApi extends ApiBase {
      * 判断设备是否绑定
      * @param deviceId
      * @param observer
-     * @param lifecycl
+     * @param lifecycle
      */
-    public void  isDeviceBinding (String deviceId ,Observer observer ,LifecycleProvider lifecycl){
-        ApiSubscribe(mServers.isDeviceBinding(deviceId) ,observer,lifecycl) ;
+    public void  isDeviceBinding (String deviceId ,Observer observer ,LifecycleProvider lifecycle){
+        ApiSubscribe(mServers.isDeviceBinding(deviceId) ,observer,lifecycle) ;
+    }
+
+
+    /**
+     * 查询信息
+     * @param account
+     * @param observer
+     * @param lifecycle
+     */
+    public  void getUserInfo(String account , Observer observer , LifecycleProvider  lifecycle){
+
+        ApiSubscribe(mServers.getUserInfo(account) ,observer ,lifecycle);
+
+
     }
 }

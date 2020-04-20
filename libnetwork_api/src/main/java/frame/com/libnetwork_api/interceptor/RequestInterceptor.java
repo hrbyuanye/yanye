@@ -6,6 +6,7 @@ import java.io.IOException;
 
 import frame.com.libnetwork_api.INetworkRequestInfo;
 import frame.com.libnetwork_api.log.KLog;
+import frame.com.libnetwork_api.log.KLogUtil;
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -37,10 +38,14 @@ public class RequestInterceptor implements Interceptor {
 
 
         try {
+            KLogUtil.printLine("request ..." ,true);
+
             KLog.e("url ..." + request.url());
             KLog.e("header ..." + request.headers().toString());
-        } catch (Exception e) {
+            KLog.e("method.."+request.method());
+            KLogUtil.printLine("request ..." ,false);
 
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

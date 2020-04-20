@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.net.SocketTimeoutException;
 
 import frame.com.libnetwork_api.log.KLog;
+import frame.com.libnetwork_api.log.KLogUtil;
+import frame.com.libnetwork_api.log.klog.JsonLog;
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -32,7 +34,10 @@ public class ResponseInterceptor implements Interceptor {
         }
         String rawJson = response.body() == null ? "" : response.body().string();
 
-        KLog.e("resonseInter... JSON == :"+rawJson);
+
+
+        JsonLog.printJson("serverInfo",rawJson ,"httpResponse");
+
 
         return response.newBuilder().body(ResponseBody.create(response.body().contentType(), rawJson)).build();
     }

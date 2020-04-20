@@ -20,4 +20,9 @@ public class WodeNetTestActivityPresenter  extends BasePresenter<WoDeTestNetAcri
     public void isDeviceBind(String deviceId) {
         mModel.isDeviceBind(deviceId);
     }
+
+    @Override
+    public void getUserInfo(String account) {
+        mModel.getUserInfo(account);
+    }
 }

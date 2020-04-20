@@ -24,4 +24,14 @@
         android:layout_height="wrap_content" />
 
 
+
+    <Button
+        android:id="@+id/btn_userinfo"
+        android:layout_marginTop="@dimen/x20"
+        android:textSize="@dimen/x40"
+        android:text="测试 电子书包  userInfoß"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
 </LinearLayout>

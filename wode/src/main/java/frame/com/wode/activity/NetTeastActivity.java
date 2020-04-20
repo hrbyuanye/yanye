@@ -25,6 +25,13 @@ public class NetTeastActivity extends BaseMvpActivity<WoDeTestNetAcrivityModle,W
             }
         });
 
+        this.findViewById(R.id.btn_userinfo).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mPresenter.getUserInfo("10000149");
+            }
+        });
+
     }
 
     @Override
@@ -44,6 +51,16 @@ public class NetTeastActivity extends BaseMvpActivity<WoDeTestNetAcrivityModle,W
 
     @Override
     public void setShowBindFail() {
+
+    }
+
+    @Override
+    public void setShowGetUserSucc() {
+
+    }
+
+    @Override
+    public void setShowGetUserFail() {
 
     }
 

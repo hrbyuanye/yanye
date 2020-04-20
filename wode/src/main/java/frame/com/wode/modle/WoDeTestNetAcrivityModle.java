@@ -3,15 +3,15 @@ package frame.com.wode.modle;
 import android.content.Context;
 
 import frame.com.libcommon.mvp.BaseModel;
+import frame.com.libcommon.util.log.KLogUtil;
+import frame.com.libnetwork_api.BaseObserver;
 import frame.com.libnetwork_api.errorhandler.ExceptionHandler;
 import frame.com.libnetwork_api.log.KLog;
 import frame.com.wode.api.WoDeNetworkApi;
 import frame.com.wode.api.bean.UserInfo;
 import frame.com.wode.contract.WoDeNetTestContract;
-import io.reactivex.Observer;
-import io.reactivex.disposables.Disposable;
 
-public class WoDeTestNetAcrivityModle  extends BaseModel  implements WoDeNetTestContract.IModel{
+public class WoDeTestNetAcrivityModle extends BaseModel implements WoDeNetTestContract.IModel {
 
     public WoDeTestNetAcrivityModle(Context context) {
         super(context);
@@ -21,37 +21,47 @@ public class WoDeTestNetAcrivityModle  extends BaseModel  implements WoDeNetTest
     @Override
     public void isDeviceBind(String deviceId) {
 
-        WoDeNetworkApi.getInstance().isDeviceBinding(deviceId, new Observer<UserInfo>() {
+        WoDeNetworkApi.getInstance().isDeviceBinding(deviceId, new BaseObserver<UserInfo>() {
             @Override
-            public void onSubscribe(Disposable d) {
-                //show dialog
+            public void onResultData(UserInfo userInfo) {
 
             }
 
             @Override
-            public void onNext(UserInfo userInfo) {
-                if (userInfo!=null){
-                    KLog.e(userInfo.toString());
-                }
-                //result
-            }
-
-            @Override
-            public void onError(Throwable e) {
-                //  hide dialog
-                ExceptionHandler.ResponeThrowable exception = (ExceptionHandler.ResponeThrowable) e;
-                KLog.e("ResponeThrowable ..code."+exception.code);
-                KLog.e("ResponeThrowable ..code."+exception.message);
+            public void onReponseError(ExceptionHandler.ResponeThrowable responeThrowable) {
 
             }
 
             @Override
-            public void onComplete() {
-                //hide Dialog
+            public void onOtherError(Throwable throwable) {
 
             }
         }, getLifecycle());
 
+    }
+
+    @Override
+    public void getUserInfo(String account) {
+        WoDeNetworkApi.getInstance().getUserInfo(account, new BaseObserver<UserInfo>() {
+                    @Override
+                    public void onResultData(UserInfo userInfo) {
+                        KLogUtil.printLine("请求完成数据 start", true);
+                        KLog.e(userInfo.toString());
+                        KLogUtil.printLine("请求完成数据 end", false);
+
+                    }
+
+                    @Override
+                    public void onReponseError(ExceptionHandler.ResponeThrowable responeThrowable) {
+
+                    }
+
+                    @Override
+                    public void onOtherError(Throwable throwable) {
+
+                    }
+                }
+                , getLifecycle());
     }
 
 }

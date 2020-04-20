@@ -134,7 +134,7 @@ public class ExceptionHandler {
 
 
     public interface APP_ERROR {
-        public static final int SUCC = 200;//	处理成功，无错误
+        public static final int SUCC = 100000;//	处理成功，无错误
         public static final int INTERFACE_PROCESSING_TIMEOUT = 1;//	接口处理超时
         public static final int INTERFACE_INTERNAL_ERROR = 2;//	接口内部错误
         public static final int PARAMETERS_EMPTY = 3;//	必需的参数为空

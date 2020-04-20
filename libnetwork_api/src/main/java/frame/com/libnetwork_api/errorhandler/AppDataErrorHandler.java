@@ -12,7 +12,12 @@ public class AppDataErrorHandler implements Function<BaseResult, BaseResult> {
     @Override
     public BaseResult apply(BaseResult response) throws Exception {
         if (response instanceof BaseResult && response.code != ExceptionHandler.APP_ERROR.SUCC) {
-            KLog.e("AppDataErrorHandler..."+response.toString());
+
+
+            KLogUtil.printLine("app error" ,true);
+            KLog.e("log  msg--->"+response.msg);
+            KLog.e("log  code--->"+response.code);
+            KLogUtil.printLine("Http error" ,false);
 
             /**
              * 处理 服务器返回的错误 ，并且根据业务处理
