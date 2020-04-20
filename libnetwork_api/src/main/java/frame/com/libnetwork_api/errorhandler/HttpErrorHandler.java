@@ -1,5 +1,6 @@
 package frame.com.libnetwork_api.errorhandler;
 
+import frame.com.libnetwork_api.log.KLog;
 import io.reactivex.Observable;
 import io.reactivex.functions.Function;
 
@@ -11,8 +12,7 @@ import io.reactivex.functions.Function;
 public class HttpErrorHandler<T> implements Function<Throwable, Observable<T>> {
     @Override
     public io.reactivex.Observable<T> apply(Throwable throwable) throws Exception {
-        System.out.println("HttpErrorHandler..."+throwable.getMessage());
-
+       KLog.e("HttpErrorHandler..."+throwable.getMessage());
         return io.reactivex.Observable.error(ExceptionHandler.handleException(throwable));
     }
 }

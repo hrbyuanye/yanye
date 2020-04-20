@@ -14,7 +14,7 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public abstract class ApiBase {
+public  class ApiBase {
 
     public final Retrofit retrofit;
     protected static INetworkRequestInfo networkRequestInfo;

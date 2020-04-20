@@ -26,7 +26,7 @@ public class BaseApplication extends MultiDexApplication {
         initNetworkRequestInfo(); // 初始化网络的请求头文件
     }
 
-    private void initNetworkRequestInfo(){
+    private   void initNetworkRequestInfo(){
         ApiBase.initNetworkRequestInfo(new AppNetworkRequestInfo());
     }
 

@@ -5,6 +5,7 @@ import android.text.TextUtils;
 import java.io.IOException;
 
 import frame.com.libnetwork_api.INetworkRequestInfo;
+import frame.com.libnetwork_api.log.KLog;
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -19,18 +20,30 @@ public class RequestInterceptor implements Interceptor {
     public RequestInterceptor(INetworkRequestInfo networkRequestInfo) {
         this.mNetworkRequestInfo = networkRequestInfo;
     }
+
     @Override
     public Response intercept(Chain chain) throws IOException {
         Request.Builder builder = chain.request()
                 .newBuilder();
-        if(mNetworkRequestInfo != null) {
-            for(String key:mNetworkRequestInfo.getRequestHeaderMap().keySet()){
-                if(!TextUtils.isEmpty(mNetworkRequestInfo.getRequestHeaderMap().get(key))) {
+        if (mNetworkRequestInfo != null) {
+            for (String key : mNetworkRequestInfo.getRequestHeaderMap().keySet()) {
+                if (!TextUtils.isEmpty(mNetworkRequestInfo.getRequestHeaderMap().get(key))) {
                     builder.addHeader(key, mNetworkRequestInfo.getRequestHeaderMap().get(key));
                 }
             }
         }
 
-        return chain.proceed(builder.build());
+        Request request = builder.build();
+
+
+        try {
+            KLog.e("url ..." + request.url());
+            KLog.e("header ..." + request.headers().toString());
+        } catch (Exception e) {
+
+            e.printStackTrace();
+        }
+
+        return chain.proceed(request);
     }
 }

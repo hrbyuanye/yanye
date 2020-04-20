@@ -7,9 +7,7 @@ import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 
-public interface ZuoYeApiServers {
-
-
+public interface WoDeApiServers {
 
     @GET("mobile/common/device/{deviceId}")
     Observable<BaseResult<UserInfo>> isDeviceBinding(@Path("deviceId") String deviceId);

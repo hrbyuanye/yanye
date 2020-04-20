@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import frame.com.libnetwork_api.INetworkRequestInfo;
 
+
 /**
  * 负责整个网络请求 添加头信息的
  */
@@ -44,7 +45,7 @@ public class AppNetworkRequestInfo implements INetworkRequestInfo {
 
     @Override
     public HashMap<String, String> getRequestHeaderMap() {
-        return null;
+        return headerMap;
     }
 
     @Override
