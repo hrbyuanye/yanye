@@ -1,11 +1,13 @@
 package frame.com.libcommon.base;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.kingja.loadsir.LoadSirUtil;
 import com.kingja.loadsir.callback.Callback;
 import com.kingja.loadsir.core.LoadService;
 import com.kingja.loadsir.core.LoadSir;
@@ -18,16 +20,16 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import frame.com.libcommon.loadsir.LoadingCallback;
+import frame.com.libcommon.loadsir.LoadingNetCallback;
 import frame.com.libcommon.event.BaseActivityEvent;
 import frame.com.libnetwork_api.ILoadView;
 
 /**
  * 绑定生命周期
  */
-public abstract class BaseActivity extends RxAppCompatActivity  implements ILoadView {
+public abstract class BaseActivity extends RxAppCompatActivity implements ILoadView {
     private Unbinder mUnbind;
-    private LoadService mLoadSirServer;
+    public volatile LoadService mLoadSirServer;
 //    private Unbinder mUnbind;
 
     @Override
@@ -36,22 +38,18 @@ public abstract class BaseActivity extends RxAppCompatActivity  implements ILoad
 //        requestWindowFeature(Window.FEATURE_NO_TITLE);
 //        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(bindLayout());
+
         mUnbind = ButterKnife.bind(this);
         EventBus.getDefault().register(this);
         AppManager.getAppManager().addActivity(this);
         ARouter.getInstance().inject(this);
-
-        mLoadSirServer =  LoadSir.getDefault().register(this, new Callback.OnReloadListener() {
-            @Override
-            public void onReload(View v) {
-                onRetryBtnClick();
-            }
-        }) ;
         initView();
         loadData();
     }
 
-    public void onRetryBtnClick() {
+
+
+    public void onRetryBtnClick(View view) {
     }
 
     //绑定布局
@@ -81,13 +79,39 @@ public abstract class BaseActivity extends RxAppCompatActivity  implements ILoad
 
     @Override
     public void showInitLoadView() {
-        mLoadSirServer.showCallback(LoadingCallback.class);
+        if (mLoadSirServer!=null)
+        mLoadSirServer.showCallback(LoadingNetCallback.class);
 
     }
 
     @Override
     public void hideInitLoadView() {
 
+        if (mLoadSirServer!=null)
         mLoadSirServer.showSuccess();
+    }
+
+
+    public void registLoadSir(View view) {
+        if (mLoadSirServer == null) {
+            mLoadSirServer = LoadSir.getDefault().register(view , new Callback.OnReloadListener() {
+                @Override
+                public void onReload(View v) {
+                    onRetryBtnClick(v);
+                }
+            });
+        }
+    }
+
+    public void registLoadSir(Activity activity) {
+        if (mLoadSirServer == null) {
+            mLoadSirServer = LoadSir.getDefault().register(activity , new Callback.OnReloadListener() {
+                @Override
+                public void onReload(View v) {
+                    onRetryBtnClick(v);
+                }
+            });
+
+        }
     }
 }

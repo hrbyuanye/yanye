@@ -1,6 +1,11 @@
 package frame.com.wode.activity;
 
+import android.os.Handler;
+import android.os.SystemClock;
 import android.view.View;
+import android.widget.FrameLayout;
+
+import com.kingja.loadsir.LoadSirUtil;
 
 import frame.com.libcommon.I.IUrlConfig;
 import frame.com.libcommon.base.BaseActivity;
@@ -10,7 +15,8 @@ import frame.com.wode.contract.WoDeNetTestContract;
 import frame.com.wode.modle.WoDeTestNetAcrivityModle;
 import frame.com.wode.presenter.WodeNetTestActivityPresenter;
 
-public class NetTeastActivity extends BaseMvpActivity<WoDeTestNetAcrivityModle,WoDeNetTestContract.IView,WodeNetTestActivityPresenter> implements WoDeNetTestContract.IView {
+public class NetTeastActivity extends BaseMvpActivity<WoDeTestNetAcrivityModle, WoDeNetTestContract.IView, WodeNetTestActivityPresenter> implements WoDeNetTestContract.IView {
+
     @Override
     public View bindLayout() {
         return inflate(R.layout.activity_wode_net_test);
@@ -32,10 +38,13 @@ public class NetTeastActivity extends BaseMvpActivity<WoDeTestNetAcrivityModle,W
             }
         });
 
+        registLoadSir(this);
     }
 
     @Override
     public void loadData() {
+
+        mPresenter.getUserInfo("10000149");
 
     }
 
@@ -43,7 +52,6 @@ public class NetTeastActivity extends BaseMvpActivity<WoDeTestNetAcrivityModle,W
     public WodeNetTestActivityPresenter initPresenter() {
         return new WodeNetTestActivityPresenter(this);
     }
-
 
 
     @Override

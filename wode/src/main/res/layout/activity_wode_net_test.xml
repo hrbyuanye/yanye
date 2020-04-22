@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
 
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <TextView
-        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
+        android:gravity="center"
         android:text="测试网络"
         android:textColor="@android:color/black"
         android:textSize="@dimen/x80" />
@@ -17,21 +21,25 @@
 
     <Button
         android:id="@+id/btn_bind"
-        android:layout_marginTop="@dimen/x20"
-        android:textSize="@dimen/x40"
-        android:text="测试 电子书包  设备是否绑定"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/x20"
+        android:text="测试 电子书包  设备是否绑定"
+        android:textSize="@dimen/x40" />
 
 
     <Button
         android:id="@+id/btn_userinfo"
-        android:layout_marginTop="@dimen/x20"
-        android:textSize="@dimen/x40"
-        android:text="测试 电子书包  userInfoß"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/x20"
+        android:text="测试 电子书包  userInfoß"
+        android:textSize="@dimen/x40" />
+    </LinearLayout>
 
+    <FrameLayout
+        android:id="@+id/fm_loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
-</LinearLayout>
+</FrameLayout>

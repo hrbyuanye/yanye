@@ -9,7 +9,8 @@ import com.kingja.loadsir.core.LoadSir;
 
 import frame.com.libcommon.loadsir.EmptyCallback;
 import frame.com.libcommon.loadsir.ErrorCallback;
-import frame.com.libcommon.loadsir.LoadingCallback;
+import frame.com.libcommon.loadsir.LoadingNetCallback;
+import frame.com.libcommon.loadsir.LoadingViewCallback;
 import frame.com.libcommon.loadsir.TimeoutCallback;
 import frame.com.libcommon.util.log.KLog;
 import frame.com.libnetwork_api.ApiBase;
@@ -53,10 +54,13 @@ public class BaseApplication extends MultiDexApplication {
         LoadSir.beginBuilder()
                 .addCallback(new ErrorCallback())
                 .addCallback(new EmptyCallback())
-                .addCallback(new LoadingCallback())
+                .addCallback(new LoadingNetCallback())
                 .addCallback(new TimeoutCallback())
-                .setDefaultCallback(LoadingCallback.class)
+                .addCallback(new LoadingNetCallback())
+                .addCallback(new LoadingViewCallback())
+               .setDefaultCallback(LoadingViewCallback.class)
                 .commit();
+
     }
 
 

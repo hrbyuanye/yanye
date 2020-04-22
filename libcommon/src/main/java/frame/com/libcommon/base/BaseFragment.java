@@ -20,7 +20,7 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import frame.com.libcommon.loadsir.LoadingCallback;
+import frame.com.libcommon.loadsir.LoadingNetCallback;
 import frame.com.libcommon.event.BaseFragmentEvent;
 import frame.com.libnetwork_api.ILoadView;
 import frame.com.libcommon.util.log.KLog;
@@ -28,12 +28,12 @@ import frame.com.libcommon.util.log.KLog;
 
 public abstract class BaseFragment extends Fragment  implements ILoadView {
     protected RxAppCompatActivity mActivity;
-    private View mView;
+    public View mView;
     //    private Unbinder mUnbind;
     private boolean isViewCreated = false;
     private boolean isViewVisable = false;
     private Unbinder mUnbind;
-    public LoadService mLoadSirServer;
+    public  volatile LoadService mLoadSirServer;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -50,18 +50,13 @@ public abstract class BaseFragment extends Fragment  implements ILoadView {
         mUnbind = ButterKnife.bind(this,mView);
         ARouter.getInstance().inject(this);
         initView();
-       mLoadSirServer =  LoadSir.getDefault().register(mView, new Callback.OnReloadListener() {
-            @Override
-            public void onReload(View v) {
-                onRetryBtnClick();
-            }
-        }) ;
         return mView;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+//        mLoadSirServer.showSuccess();
         isViewCreated = true;
         //如果启用了懒加载就进行懒加载，否则就进行预加载
         if (enableLazyData()) {
@@ -130,17 +125,30 @@ public abstract class BaseFragment extends Fragment  implements ILoadView {
 
     @Override
     public void showInitLoadView() {
-        mLoadSirServer.showCallback(LoadingCallback.class);
+        if (mLoadSirServer!=null)
+        mLoadSirServer.showCallback(LoadingNetCallback.class);
 
     }
 
     @Override
     public void hideInitLoadView() {
-
+        if (mLoadSirServer!=null)
         mLoadSirServer.showSuccess();
     }
 
     public void onRetryBtnClick() {
 
+    }
+
+
+    public void registLoadSir(View view ) {
+        if (mLoadSirServer == null) {
+            mLoadSirServer =  LoadSir.getDefault().register(view , new Callback.OnReloadListener() {
+                @Override
+                public void onReload(View v) {
+                    onRetryBtnClick();
+                }
+            }) ;
+        }
     }
 }
