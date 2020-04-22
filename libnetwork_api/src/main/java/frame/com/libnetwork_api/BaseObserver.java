@@ -1,15 +1,27 @@
 package frame.com.libnetwork_api;
 
 
+
 import frame.com.libnetwork_api.errorhandler.ExceptionHandler;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 
 /**
- *  网络处理的 BASE 处理
+ * 网络处理的 BASE 处理
+ *
  * @param <T>
  */
 public abstract class BaseObserver<T> implements Observer<BaseResult<T>> {
+    private ILoadView view;
+
+
+    public BaseObserver() {
+    }
+
+    public BaseObserver(ILoadView view) {
+        this.view = view;
+    }
+
     @Override
     public void onSubscribe(Disposable d) {
 
@@ -44,11 +56,17 @@ public abstract class BaseObserver<T> implements Observer<BaseResult<T>> {
 
     private void showLoading() {
 
+        if (view!=null){
+            view.showInitLoadView();
+        }
         //TODO:
     }
 
     public void hideLoading() {
         //TODO:
+        if (view!=null){
+            view.hideInitLoadView();
+        }
     }
 
 
@@ -72,7 +90,7 @@ public abstract class BaseObserver<T> implements Observer<BaseResult<T>> {
     /**
      * 不必每个人都需要实现该 方法 需要使用 重新该方法
      */
-    public void  onResultComplete(){
+    public void onResultComplete() {
         //TODO:  need user
 
     }

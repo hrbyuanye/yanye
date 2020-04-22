@@ -45,5 +45,7 @@ dependencies {
     api rootProject.ext.dependencies["rxlifecycle-components"]
     api rootProject.ext.dependencies["gson"]
     // api rootProject.ext.dependencies["rxpermissions"]
+    //    api rootProject.ext.dependencies["loadsir"]
     api project(':libnetwork_api')
+    api project(':libloadsir')
 }

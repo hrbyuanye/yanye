@@ -179,17 +179,5 @@ public class ModleMainActivity extends BaseMvpActivity<MainModle, MainlContract.
     public void showNoDataView() {
 
     }
-
-    @Override
-    public void showInitLoadView() {
-
-    }
-
-    @Override
-    public void hideInitLoadView() {
-
-    }
-
-
-
+    
 }

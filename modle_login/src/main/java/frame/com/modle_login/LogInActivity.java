@@ -57,15 +57,6 @@ public class LogInActivity extends BaseMvpActivity<LogInDetailModel, LogInDetail
 
     }
 
-    @Override
-    public void showInitLoadView() {
-
-    }
-
-    @Override
-    public void hideInitLoadView() {
-
-    }
 
     @Override
     public void onClick(View v) {

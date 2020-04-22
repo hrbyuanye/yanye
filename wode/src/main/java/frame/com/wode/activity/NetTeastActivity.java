@@ -44,38 +44,11 @@ public class NetTeastActivity extends BaseMvpActivity<WoDeTestNetAcrivityModle,W
         return new WodeNetTestActivityPresenter(this);
     }
 
-    @Override
-    public void setShowBindSucc() {
 
-    }
-
-    @Override
-    public void setShowBindFail() {
-
-    }
-
-    @Override
-    public void setShowGetUserSucc() {
-
-    }
-
-    @Override
-    public void setShowGetUserFail() {
-
-    }
 
     @Override
     public void showNoDataView() {
 
     }
 
-    @Override
-    public void showInitLoadView() {
-
-    }
-
-    @Override
-    public void hideInitLoadView() {
-
-    }
 }

@@ -17,11 +17,7 @@ public interface WoDeNetTestContract  {
         void getUserInfo(String account ,BaseObserver observer);
     }
 
-    interface IView extends BaseView {
-        void setShowBindSucc();
-        void setShowBindFail();
-        void setShowGetUserSucc() ;
-        void setShowGetUserFail() ;
+    interface IView extends BaseView { 
 
     }
 

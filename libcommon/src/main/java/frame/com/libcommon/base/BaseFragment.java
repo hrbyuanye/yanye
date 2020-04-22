@@ -9,6 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.kingja.loadsir.callback.Callback;
+import com.kingja.loadsir.core.LoadService;
+import com.kingja.loadsir.core.LoadSir;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
 import org.greenrobot.eventbus.EventBus;
@@ -17,17 +20,20 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import frame.com.libcommon.loadsir.LoadingCallback;
 import frame.com.libcommon.event.BaseFragmentEvent;
+import frame.com.libnetwork_api.ILoadView;
 import frame.com.libcommon.util.log.KLog;
 
 
-public abstract class BaseFragment extends Fragment {
+public abstract class BaseFragment extends Fragment  implements ILoadView {
     protected RxAppCompatActivity mActivity;
     private View mView;
     //    private Unbinder mUnbind;
     private boolean isViewCreated = false;
     private boolean isViewVisable = false;
     private Unbinder mUnbind;
+    public LoadService mLoadSirServer;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -44,6 +50,12 @@ public abstract class BaseFragment extends Fragment {
         mUnbind = ButterKnife.bind(this,mView);
         ARouter.getInstance().inject(this);
         initView();
+       mLoadSirServer =  LoadSir.getDefault().register(mView, new Callback.OnReloadListener() {
+            @Override
+            public void onReload(View v) {
+                onRetryBtnClick();
+            }
+        }) ;
         return mView;
     }
 
@@ -113,5 +125,22 @@ public abstract class BaseFragment extends Fragment {
 
     public View inflate(int resId) {
         return LayoutInflater.from(mActivity).inflate(resId, null);
+    }
+
+
+    @Override
+    public void showInitLoadView() {
+        mLoadSirServer.showCallback(LoadingCallback.class);
+
+    }
+
+    @Override
+    public void hideInitLoadView() {
+
+        mLoadSirServer.showSuccess();
+    }
+
+    public void onRetryBtnClick() {
+
     }
 }

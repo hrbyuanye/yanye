@@ -41,7 +41,7 @@ public class WodeNetTestActivityPresenter  extends BasePresenter<WoDeTestNetAcri
 
     @Override
     public void getUserInfo(String account) {
-        mModel.getUserInfo(account , new BaseObserver<UserInfo>() {
+        mModel.getUserInfo(account , new BaseObserver<UserInfo>(mView) {
             @Override
             public void onResultData(UserInfo userInfo) {
 
@@ -58,4 +58,5 @@ public class WodeNetTestActivityPresenter  extends BasePresenter<WoDeTestNetAcri
             }
         });
     }
+
 }

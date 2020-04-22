@@ -10,6 +10,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/libcommon" />
+            <option value="$PROJECT_DIR$/libloadsir" />
             <option value="$PROJECT_DIR$/libnetwork_api" />
             <option value="$PROJECT_DIR$/modle_login" />
             <option value="$PROJECT_DIR$/modle_main" />
