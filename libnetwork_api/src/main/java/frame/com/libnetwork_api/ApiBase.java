@@ -1,20 +1,39 @@
 package frame.com.libnetwork_api;
 
+import android.content.Context;
+
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.trello.rxlifecycle2.LifecycleProvider;
 
+import java.io.File;
 import java.util.concurrent.TimeUnit;
 
+import frame.com.libnetwork_api.interceptor.CacheInterceptor;
 import frame.com.libnetwork_api.interceptor.RequestInterceptor;
 import frame.com.libnetwork_api.interceptor.ResponseInterceptor;
+import frame.com.libnetwork_api.interceptor.logging.Level;
+import frame.com.libnetwork_api.interceptor.logging.LoggingInterceptor;
+import frame.com.libnetwork_api.log.KLog;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
+import okhttp3.Cache;
+import okhttp3.ConnectionPool;
 import okhttp3.OkHttpClient;
+import okhttp3.internal.platform.Platform;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public  class ApiBase {
+public class ApiBase {
+
+    //超时时间
+    private static final int DEFAULT_TIMEOUT = 20;
+    //缓存时间
+    private static final int CACHE_TIMEOUT = 10 * 1024 * 1024;
+    private Cache cache = null;
+    private File httpCacheDirectory;
+    private Context context ;
+
 
     public final Retrofit retrofit;
     protected static INetworkRequestInfo networkRequestInfo;
@@ -22,9 +41,12 @@ public  class ApiBase {
     private static ResponseInterceptor sHttpsResponseInterceptor;
 
 
-    public ApiBase(String baseUrl) {
-        if (networkRequestInfo == null){
-            new RuntimeException("ApiBase ..initNetworkRequestInfo 请先初始化") ;
+
+
+    public ApiBase(String baseUrl ,Context context) {
+        this.context = context ;
+        if (networkRequestInfo == null) {
+            new RuntimeException("ApiBase ..initNetworkRequestInfo 请先初始化");
         }
         retrofit = new Retrofit
                 .Builder()
@@ -36,11 +58,25 @@ public  class ApiBase {
 
     //1.okHttp
     private OkHttpClient getOkHttpClient() {
+        if (httpCacheDirectory == null) {
+            httpCacheDirectory = new File(context.getCacheDir(), "goldze_cache");
+        }
+
+        try {
+            if (cache == null) {
+                cache = new Cache(httpCacheDirectory, CACHE_TIMEOUT);
+            }
+        } catch (Exception e) {
+            KLog.e("Could not create http cache", e);
+        }
+
+
         OkHttpClient.Builder okHttpClient = new OkHttpClient.Builder()
                 .connectTimeout(15, TimeUnit.SECONDS)
                 .readTimeout(15, TimeUnit.SECONDS)
                 .writeTimeout(15, TimeUnit.SECONDS);
 
+        okHttpClient.addInterceptor(new CacheInterceptor(context)) ;
         /*可以统一添加网络参数到请求头*/
         okHttpClient.addInterceptor(sHttpsRequestInterceptor);
         /*网络请求返回的时候的数据处理*/
@@ -52,10 +88,23 @@ public  class ApiBase {
         return httpClient;
     }
 
+    /**
+     * 设置LOG
+     *
+     * @param builder
+     */
     private void setLoggingLevel(OkHttpClient.Builder builder) {
-        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
-        //BODY打印信息,NONE不打印信息
-        logging.setLevel(networkRequestInfo.isDebug() ? HttpLoggingInterceptor.Level.BODY : HttpLoggingInterceptor.Level.NONE);
+
+        LoggingInterceptor logging = new LoggingInterceptor
+                .Builder()//构建者模式
+                .loggable(networkRequestInfo.isDebug()) //是否开启日志打印
+                .setLevel(Level.BASIC) //打印的等级
+                .log(Platform.INFO) // 打印类型
+                .request("Request") // request的Tag
+                .response("Response")// Response的Tag
+                .addHeader("log-header", "I am the log request header.") // 添加打印头, 注意 key 和 value 都不能是中文
+                .build();
+
         builder.addInterceptor(logging);
     }
 

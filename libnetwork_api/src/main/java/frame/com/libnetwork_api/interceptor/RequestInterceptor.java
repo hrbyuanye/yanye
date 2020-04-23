@@ -37,17 +37,17 @@ public class RequestInterceptor implements Interceptor {
         Request request = builder.build();
 
 
-        try {
-            KLogUtil.printLine("request ..." ,true);
-
-            KLog.e("url ..." + request.url());
-            KLog.e("header ..." + request.headers().toString());
-            KLog.e("method.."+request.method());
-            KLogUtil.printLine("request ..." ,false);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        try {
+//            KLogUtil.printLine("request ..." ,true);
+//
+//            KLog.e("url ..." + request.url());
+//            KLog.e("header ..." + request.headers().toString());
+//            KLog.e("method.."+request.method());
+//            KLogUtil.printLine("request ..." ,false);
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
 
         return chain.proceed(request);
     }

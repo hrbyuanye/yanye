@@ -36,7 +36,7 @@ public class ResponseInterceptor implements Interceptor {
 
 
 
-        JsonLog.printJson("serverInfo",rawJson ,"httpResponse");
+//        JsonLog.printJson("serverInfo",rawJson ,"httpResponse");
 
 
         return response.newBuilder().body(ResponseBody.create(response.body().contentType(), rawJson)).build();

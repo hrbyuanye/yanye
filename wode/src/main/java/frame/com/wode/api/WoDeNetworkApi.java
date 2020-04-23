@@ -3,6 +3,7 @@ package frame.com.wode.api;
 
 import com.trello.rxlifecycle2.LifecycleProvider;
 
+import frame.com.libcommon.BaseApplication;
 import frame.com.libcommon.I.IUrlConfig;
 import frame.com.libnetwork_api.ApiBase;
 import io.reactivex.Observer;
@@ -12,7 +13,7 @@ public class  WoDeNetworkApi extends ApiBase {
 
     private WoDeApiServers mServers ;
     private WoDeNetworkApi() {
-        super(IUrlConfig.IAppConfig.appURL);
+        super(IUrlConfig.IAppConfig.appURL, BaseApplication.getApplication());
         mServers=  retrofit.create(WoDeApiServers.class) ;
     }
 
