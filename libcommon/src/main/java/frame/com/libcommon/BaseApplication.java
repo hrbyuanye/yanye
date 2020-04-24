@@ -12,6 +12,8 @@ import frame.com.libcommon.loadsir.ErrorCallback;
 import frame.com.libcommon.loadsir.LoadingNetCallback;
 import frame.com.libcommon.loadsir.LoadingViewCallback;
 import frame.com.libcommon.loadsir.TimeoutCallback;
+import frame.com.libcommon.manager.ImgManagerProxy;
+import frame.com.libcommon.manager.img.GlideLoaderImg;
 import frame.com.libcommon.util.log.KLog;
 import frame.com.libnetwork_api.ApiBase;
 
@@ -27,6 +29,7 @@ public class BaseApplication extends MultiDexApplication {
         initARouter();
         initNetworkRequestInfo(); // 初始化网络的请求头文件
         initLoadSir();
+        ImgManagerProxy.getInstance().init(new GlideLoaderImg());
     }
 
 

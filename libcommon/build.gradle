@@ -48,4 +48,13 @@ dependencies {
     //    api rootProject.ext.dependencies["loadsir"]
     api project(':libnetwork_api')
     api project(':libloadsir')
+
+    //glide图片加载库
+    api (rootProject.ext.dependencies.glide){
+        exclude group: 'com.android.support'
+    }
+    annotationProcessor rootProject.ext.dependencies["glide-compiler"]
+    api rootProject.ext.dependencies["picasso"]
+
+
 }
