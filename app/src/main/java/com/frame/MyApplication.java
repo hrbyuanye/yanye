@@ -1,11 +1,8 @@
 package com.frame;
 
-import java.security.PublicKey;
 
 import frame.com.libcommon.BaseApplication;
 import frame.com.libcommon.crash.CaocConfig;
-import frame.com.libcommon.crash.CustomActivityOnCrash;
-import frame.com.libnetwork_api.log.KLog;
 import frame.com.modle_main.ModleMainSplish;
 
 public class MyApplication extends BaseApplication {

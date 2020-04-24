@@ -29,6 +29,7 @@ public class BaseApplication extends MultiDexApplication {
         initARouter();
         initNetworkRequestInfo(); // 初始化网络的请求头文件
         initLoadSir();
+        //通过静态代理的方式切换 下载图片 使用的第三方库
         ImgManagerProxy.getInstance().init(new GlideLoaderImg());
     }
 
