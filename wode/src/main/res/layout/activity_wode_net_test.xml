@@ -35,6 +35,14 @@
         android:layout_marginTop="@dimen/x20"
         android:text="测试 电子书包  userInfoß"
         android:textSize="@dimen/x40" />
+
+        <Button
+            android:id="@+id/btn_crash"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/x20"
+            android:text="测试 _crash"
+            android:textSize="@dimen/x40" />
     </LinearLayout>
 
     <FrameLayout

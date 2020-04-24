@@ -38,6 +38,14 @@ public class NetTeastActivity extends BaseMvpActivity<WoDeTestNetAcrivityModle, 
             }
         });
 
+        this.findViewById(R.id.btn_crash).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Integer.parseInt("XXXX") ;
+            }
+        });
+
         registLoadSir(this);
     }
 
