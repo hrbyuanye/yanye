@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.kingja.loadsir.LoadSirUtil;
 import com.kingja.loadsir.callback.Callback;
 import com.kingja.loadsir.core.LoadService;
 import com.kingja.loadsir.core.LoadSir;
@@ -22,7 +21,7 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import frame.com.libcommon.loadsir.LoadingNetCallback;
 import frame.com.libcommon.event.BaseActivityEvent;
-import frame.com.libnetwork_api.ILoadView;
+import frame.com.libnetwork_api.base.ILoadView;
 
 /**
  * 绑定生命周期

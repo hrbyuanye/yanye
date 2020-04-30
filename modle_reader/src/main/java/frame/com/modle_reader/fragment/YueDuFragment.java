@@ -4,7 +4,7 @@ import android.view.View;
 
 
 import frame.com.libcommon.base.BaseFragment;
-import frame.com.libcommon.util.log.KLog;
+import fram.lib.utils.log.KLog;
 import frame.com.modle_reader.R;
 
 public class YueDuFragment extends BaseFragment {

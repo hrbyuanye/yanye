@@ -6,7 +6,7 @@ import android.widget.FrameLayout;
 import butterknife.BindView;
 import butterknife.OnClick;
 import frame.com.libcommon.base.BaseMvpFragment;
-import frame.com.libcommon.util.log.KLog;
+import fram.lib.utils.log.KLog;
 import frame.com.wode.R;
 import frame.com.wode.R2;
 import frame.com.wode.activity.NetTeastActivity;

@@ -2,7 +2,7 @@ package frame.com.libcommon;
 
 import java.util.HashMap;
 
-import frame.com.libnetwork_api.INetworkRequestInfo;
+import frame.com.libnetwork_api.base.INetworkRequestInfo;
 
 
 /**

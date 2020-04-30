@@ -1,1 +1,1 @@
-include ':app', ':libcommon', ':modle_login', ':modle_main', ':modle_reader', ':wode', ':zuoye', ':libnetwork_api', ':libloadsir'
+include ':app', ':libcommon', ':modle_login', ':modle_main', ':modle_reader', ':wode', ':zuoye', ':libnetwork_api', ':libloadsir', ':rxjavadmeomodle', ':libutils'

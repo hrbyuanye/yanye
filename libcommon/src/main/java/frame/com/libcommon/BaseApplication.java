@@ -14,16 +14,22 @@ import frame.com.libcommon.loadsir.LoadingViewCallback;
 import frame.com.libcommon.loadsir.TimeoutCallback;
 import frame.com.libcommon.manager.ImgManagerProxy;
 import frame.com.libcommon.manager.img.GlideLoaderImg;
-import frame.com.libcommon.util.log.KLog;
-import frame.com.libnetwork_api.ApiBase;
+import fram.lib.utils.log.KLog;
+import frame.com.libnetwork_api.base.ApiBase;
 
 public class BaseApplication extends MultiDexApplication {
+
+    public static  int test = 10 ;
+    public static  int getTestValue(){
+        return test ;
+    }
 
     private static BaseApplication application;
 
     @Override
     public void onCreate() {
         super.onCreate();
+        KLog.e("init .....applacation  creat");
         application = this;
         KLog.init(BuildConfig.IS_DEBUG); //打印日志
         initARouter();

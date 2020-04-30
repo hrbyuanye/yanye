@@ -3,7 +3,7 @@ package frame.com.wode.modle;
 import android.content.Context;
 
 import frame.com.libcommon.mvp.BaseModel;
-import frame.com.libnetwork_api.BaseObserver;
+import frame.com.libnetwork_api.base.BaseObserver;
 import frame.com.wode.api.WoDeNetworkApi;
 import frame.com.wode.contract.WoDeNetTestContract;
 

@@ -33,7 +33,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import frame.com.libcommon.BaseApplication;
 import frame.com.libcommon.R;
+import fram.lib.utils.log.KLog;
 
 
 public final class DefaultErrorActivity extends AppCompatActivity {
@@ -42,6 +44,8 @@ public final class DefaultErrorActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        KLog.e("init DefaultErrorActivity ..."+BaseApplication.getTestValue());
 
         //This is needed to avoid a crash if the developer has not specified
         //an app-level theme that extends Theme.AppCompat

@@ -4,8 +4,8 @@ package debug;
 import java.util.HashMap;
 
 import frame.com.libcommon.BaseApplication;
-import frame.com.libnetwork_api.ApiBase;
-import frame.com.libnetwork_api.INetworkRequestInfo;
+import frame.com.libnetwork_api.base.ApiBase;
+import frame.com.libnetwork_api.base.INetworkRequestInfo;
 
 public class MyApplication extends BaseApplication {
     @Override

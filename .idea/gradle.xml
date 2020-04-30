@@ -12,9 +12,11 @@
             <option value="$PROJECT_DIR$/libcommon" />
             <option value="$PROJECT_DIR$/libloadsir" />
             <option value="$PROJECT_DIR$/libnetwork_api" />
+            <option value="$PROJECT_DIR$/libutils" />
             <option value="$PROJECT_DIR$/modle_login" />
             <option value="$PROJECT_DIR$/modle_main" />
             <option value="$PROJECT_DIR$/modle_reader" />
+            <option value="$PROJECT_DIR$/rxjavadmeomodle" />
             <option value="$PROJECT_DIR$/wode" />
             <option value="$PROJECT_DIR$/zuoye" />
           </set>

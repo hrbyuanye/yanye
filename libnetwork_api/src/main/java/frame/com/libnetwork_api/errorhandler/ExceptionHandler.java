@@ -10,7 +10,6 @@ import org.json.JSONException;
 
 import java.net.ConnectException;
 
-import frame.com.libnetwork_api.log.KLog;
 
 public class ExceptionHandler {
 

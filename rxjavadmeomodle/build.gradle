@@ -1,0 +1,18 @@
+
+apply from: "../module.build.gradle"
+android {
+
+    defaultConfig {
+        if (isModule.toBoolean()) {
+            applicationId "view.yuanye.com.rxjavadmeomodle"
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation project(':libcommon')
+    annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
+    annotationProcessor rootProject.ext.dependencies["dagger-compiler"]
+    annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
+}

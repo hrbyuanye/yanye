@@ -5,7 +5,7 @@ import com.trello.rxlifecycle2.LifecycleProvider;
 
 import frame.com.libcommon.BaseApplication;
 import frame.com.libcommon.I.IUrlConfig;
-import frame.com.libnetwork_api.ApiBase;
+import frame.com.libnetwork_api.base.ApiBase;
 import io.reactivex.Observer;
 
 public class  WoDeNetworkApi extends ApiBase {

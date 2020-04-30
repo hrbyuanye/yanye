@@ -4,9 +4,7 @@ import android.text.TextUtils;
 
 import java.io.IOException;
 
-import frame.com.libnetwork_api.INetworkRequestInfo;
-import frame.com.libnetwork_api.log.KLog;
-import frame.com.libnetwork_api.log.KLogUtil;
+import frame.com.libnetwork_api.base.INetworkRequestInfo;
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;

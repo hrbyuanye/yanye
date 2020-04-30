@@ -1,7 +1,7 @@
 package com.frame;
 
+import fram.lib.utils.log.KLog;
 import frame.com.libcommon.crash.CustomActivityOnCrash;
-import frame.com.libnetwork_api.log.KLog;
 
 /**
  *  必须自己定义一个 类继承 不能使用内部类的方式 因为需要序列化

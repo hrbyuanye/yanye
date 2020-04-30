@@ -1,7 +1,7 @@
 package frame.com.wode.contract;
 
 import frame.com.libcommon.mvp.BaseView;
-import frame.com.libnetwork_api.BaseObserver;
+import frame.com.libnetwork_api.base.BaseObserver;
 
 public interface WoDeNetTestContract  {
 

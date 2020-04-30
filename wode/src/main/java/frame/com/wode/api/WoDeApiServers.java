@@ -1,7 +1,7 @@
 package frame.com.wode.api;
 
 
-import frame.com.libnetwork_api.BaseResult;
+import frame.com.libnetwork_api.base.BaseResult;
 import frame.com.wode.api.bean.UserInfo;
 import io.reactivex.Observable;
 import retrofit2.http.GET;

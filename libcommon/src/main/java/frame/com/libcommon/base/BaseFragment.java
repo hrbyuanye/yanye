@@ -22,8 +22,8 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import frame.com.libcommon.loadsir.LoadingNetCallback;
 import frame.com.libcommon.event.BaseFragmentEvent;
-import frame.com.libnetwork_api.ILoadView;
-import frame.com.libcommon.util.log.KLog;
+import frame.com.libnetwork_api.base.ILoadView;
+import fram.lib.utils.log.KLog;
 
 
 public abstract class BaseFragment extends Fragment  implements ILoadView {

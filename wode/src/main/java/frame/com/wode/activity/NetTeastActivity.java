@@ -5,10 +5,12 @@ import android.os.SystemClock;
 import android.view.View;
 import android.widget.FrameLayout;
 
-import com.kingja.loadsir.LoadSirUtil;
 
+import com.alibaba.android.arouter.launcher.ARouter;
+
+import frame.com.libcommon.BaseApplication;
+import frame.com.libcommon.I.IRoutPath;
 import frame.com.libcommon.I.IUrlConfig;
-import frame.com.libcommon.base.BaseActivity;
 import frame.com.libcommon.base.BaseMvpActivity;
 import frame.com.wode.R;
 import frame.com.wode.contract.WoDeNetTestContract;
@@ -27,6 +29,8 @@ public class NetTeastActivity extends BaseMvpActivity<WoDeTestNetAcrivityModle, 
         this.findViewById(R.id.btn_bind).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                 BaseApplication.test = 20 ;
+
                 mPresenter.isDeviceBind(IUrlConfig.IAppConfig.uuiId);
             }
         });
@@ -43,6 +47,15 @@ public class NetTeastActivity extends BaseMvpActivity<WoDeTestNetAcrivityModle, 
             public void onClick(View view) {
 
                 Integer.parseInt("XXXX") ;
+            }
+        });
+
+        this.findViewById(R.id.btn_rxdemo).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ARouter.getInstance().build(IRoutPath.RxDemoPath.ActivityModleRxDemoMainPath).navigation();
+
+
             }
         });
 

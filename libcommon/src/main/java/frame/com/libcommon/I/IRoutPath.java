@@ -21,6 +21,12 @@ public interface IRoutPath {
         String ActivityModleMainName = "主界面";
     }
 
+    interface RxDemoPath{
+
+        String pathroot  = "/RxDemo/" ;
+        String ActivityModleRxDemoMainPath = pathroot + "ActivityRxDemoModleMain";
+        String ActivityModleMainRxDemoName = "RxDemo主界面";
+    }
 
     interface IProviderPath {
 

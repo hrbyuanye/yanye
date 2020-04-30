@@ -5,49 +5,58 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:gravity="center"
-        android:text="测试网络"
-        android:textColor="@android:color/black"
-        android:textSize="@dimen/x80" />
-
-
-    <Button
-        android:id="@+id/btn_bind"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/x20"
-        android:text="测试 电子书包  设备是否绑定"
-        android:textSize="@dimen/x40" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:padding="@dimen/x50"
+            android:text="测试网络"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/x80" />
 
 
-    <Button
-        android:id="@+id/btn_userinfo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/x20"
-        android:text="测试 电子书包  userInfoß"
-        android:textSize="@dimen/x40" />
+        <Button
+            android:id="@+id/btn_bind"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/x20"
+            android:padding="@dimen/x50"
+            android:text="测试 电子书包  设备是否绑定"
+            android:textSize="@dimen/x40" />
+
+
+        <Button
+            android:id="@+id/btn_userinfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/x20"
+            android:padding="@dimen/x50"
+            android:text="测试 电子书包  userInfoß"
+            android:textSize="@dimen/x40" />
 
         <Button
             android:id="@+id/btn_crash"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/x20"
+            android:padding="@dimen/x50"
             android:text="测试 _crash"
             android:textSize="@dimen/x40" />
-    </LinearLayout>
 
-    <FrameLayout
-        android:id="@+id/fm_loading"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+
+        <Button
+            android:id="@+id/btn_rxdemo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/x20"
+            android:text="跳转RXDEMO"
+            android:textSize="@dimen/x40" />
+    </LinearLayout>
+    s
 
 </FrameLayout>

@@ -5,7 +5,7 @@ import android.content.Intent;
 
 import frame.com.libcommon.base.AppManager;
 import frame.com.libcommon.mvp.BaseModel;
-import frame.com.libcommon.util.log.KLog;
+import fram.lib.utils.log.KLog;
 import frame.com.wode.contract.WoDeFragmentContract;
 
 public class WoDeFragmentModle extends BaseModel implements WoDeFragmentContract.IModel {

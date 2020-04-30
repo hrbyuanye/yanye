@@ -3,7 +3,7 @@ package frame.com.zuoye.fragment;
 import android.view.View;
 
 import frame.com.libcommon.base.BaseFragment;
-import frame.com.libcommon.util.log.KLog;
+import fram.lib.utils.log.KLog;
 import frame.com.zuoye.R;
 
 public class ZuoYeFragment extends BaseFragment {
