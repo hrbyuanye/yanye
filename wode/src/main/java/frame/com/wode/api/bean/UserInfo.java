@@ -354,4 +354,26 @@ public class UserInfo implements Serializable {
             this.classId = classId;
         }
     }
+
+    @Override
+    public String toString() {
+        return "UserInfo Bean 信息{" +
+                "teacherNumber='" + teacherNumber + '\'' +
+                ", studentNumber='" + studentNumber + '\'' +
+                ", userId='" + userId + '\'' +
+                ", account='" + account + '\'' +
+                ", userName='" + userName + '\'' +
+                ", userGenderValue='" + userGenderValue + '\'' +
+                ", userEmail='" + userEmail + '\'' +
+                ", userMobile='" + userMobile + '\'' +
+                ", roleNameCode='" + roleNameCode + '\'' +
+                ", schoolName='" + schoolName + '\'' +
+                ", deviceId='" + deviceId + '\'' +
+                ", studentOfClazz=" + studentOfClazz +
+                ", teachClazz=" + teachClazz +
+                ", mainTeacherClazz=" + mainTeacherClazz +
+                ", schoolPkg=" + schoolPkg +
+                ", sectionInfos=" + sectionInfos +
+                '}';
+    }
 }

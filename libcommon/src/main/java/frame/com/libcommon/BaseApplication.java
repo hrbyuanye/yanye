@@ -7,6 +7,7 @@ import android.support.multidex.MultiDexApplication;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.kingja.loadsir.core.LoadSir;
 
+import fram.lib.utils.Utils;
 import frame.com.libcommon.loadsir.EmptyCallback;
 import frame.com.libcommon.loadsir.ErrorCallback;
 import frame.com.libcommon.loadsir.LoadingNetCallback;
@@ -31,12 +32,14 @@ public class BaseApplication extends MultiDexApplication {
         super.onCreate();
         KLog.e("init .....applacation  creat");
         application = this;
+        Utils.init(application);
         KLog.init(BuildConfig.IS_DEBUG); //打印日志
         initARouter();
         initNetworkRequestInfo(); // 初始化网络的请求头文件
         initLoadSir();
         //通过静态代理的方式切换 下载图片 使用的第三方库
         ImgManagerProxy.getInstance().init(new GlideLoaderImg());
+
     }
 
 

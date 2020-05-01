@@ -1,4 +1,4 @@
-package fram.lib.utils;
+package fram.lib.utils.sp;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -9,8 +9,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import fram.lib.utils.Utils;
+
 /**
- * Created by goldze on 2017/5/14.
  * SharedPreferences工具类
  */
 public final class SPUtils {
@@ -40,6 +41,8 @@ public final class SPUtils {
             sp = new SPUtils(spName);
             sSPMap.put(spName, sp);
         }
+
+        SpFilesManager.save(spName);
         return sp;
     }
 

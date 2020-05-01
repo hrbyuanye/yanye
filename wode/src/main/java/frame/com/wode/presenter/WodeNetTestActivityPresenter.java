@@ -2,8 +2,11 @@ package frame.com.wode.presenter;
 
 import android.content.Context;
 
+import fram.lib.utils.ToastUtils;
+import fram.lib.utils.log.KLog;
 import frame.com.libcommon.BaseApplication;
 import frame.com.libcommon.mvp.BasePresenter;
+import frame.com.libnetwork_api.base.BaseCachedData;
 import frame.com.libnetwork_api.base.BaseObserver;
 import frame.com.wode.api.bean.UserInfo;
 import frame.com.wode.contract.WoDeNetTestContract;
@@ -37,16 +40,20 @@ public class WodeNetTestActivityPresenter extends BasePresenter<WoDeTestNetAcriv
 
     @Override
     public void getUserInfo(String account) {
+        BaseCachedData<UserInfo> cachedData = new BaseCachedData<>() ;
+        cachedData.cacheKey = "user_info" ;
         mModel.getUserInfo(account, new BaseObserver<UserInfo>(BaseApplication.getApplication()) {
             @Override
             public void onLoadSuccess(UserInfo userInfo, int couts) {
 
+                KLog.e("userInfo",userInfo.toString());
             }
 
             @Override
             public void onLoadFail(Throwable throwable) {
+                ToastUtils.showShort(throwable.getMessage());
 
             }
-        }.setLoadView(mView));
+        }.setLoadView(mView).setCacheData(cachedData ,UserInfo.class));
     }
 }

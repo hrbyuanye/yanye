@@ -4,7 +4,13 @@ package frame.com.libnetwork_api.base;
 import android.content.Context;
 import android.text.TextUtils;
 
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import fram.lib.utils.GsonUtils;
 import fram.lib.utils.log.KLog;
+import fram.lib.utils.sp.SPUtils;
 import frame.com.libnetwork_api.utils.NetworkUtil;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
@@ -17,9 +23,12 @@ import io.reactivex.disposables.Disposable;
 public abstract class BaseObserver<T> implements Observer<BaseResult<T>> {
     private String tag = "BaseObserver";
     private ILoadView view;
-
+    //不是分页的缓存 SP
+    private final String SP_DEFULT_CACHE_SP = "sp_defult_cache";
     private BaseCachedData<T> mData; //缓存数据
     private Context context;
+    private Class<T> t; //要解析 "data" 的数据类型
+
 
     public BaseObserver(Context context) {
         this.context = context;
@@ -28,14 +37,18 @@ public abstract class BaseObserver<T> implements Observer<BaseResult<T>> {
 
     /**
      * 设置缓存信息
+     *
      * @param data
      * @return
      */
-    public BaseObserver setCacheData(BaseCachedData data){
+    public BaseObserver setCacheData(BaseCachedData data, Class<T> t) {
+        this.t = t;
 
-        mData = data ;
-        return  this ;
+        mData = data;
+
+        return this;
     }
+
     /**
      * 加载状态的对话框
      *
@@ -55,16 +68,26 @@ public abstract class BaseObserver<T> implements Observer<BaseResult<T>> {
     @Override
     public void onNext(BaseResult<T> tBaseResult) {
         if (tBaseResult != null) {
-            if (tBaseResult.data != null && mData!=null &&!TextUtils.isEmpty(mData.cacheKey)) {
-                if (mData.cachePage == 0) {
-                    KLog.e("当前为第一页 视为 刷新操作 ，需求清除缓存");
-                    //TODO:清除缓存
-                }
-
+            if (tBaseResult.data != null && mData != null && !TextUtils.isEmpty(mData.cacheKey)) {
                 //TODO:缓存数据
                 mData.data = tBaseResult.data;
                 mData.count = tBaseResult.count;
                 mData.updateTimeInMills = System.currentTimeMillis();
+                String jsonData = GsonUtils.toJson(mData);
+
+                if (mData.cachePage == -1) {
+                    KLog.e(tag, "正常保存 非分页方式。。。");
+                    SPUtils.getInstance(SP_DEFULT_CACHE_SP).put(mData.cacheKey, jsonData);
+
+                } else {
+                    if (mData.cachePage == 0) {
+                        KLog.e("当前为第一页 视为 刷新操作 ，需求清除缓存");
+                        SPUtils.getInstance("sp_" + mData.cacheKey).clear();
+                    }
+
+                    KLog.e(tag, "分页保存数据 page:" + mData.cachePage);
+                    SPUtils.getInstance("sp_" + mData.cacheKey).put(mData.cachePage + "", jsonData);
+                }
 
             }
             hideLoading();
@@ -76,15 +99,52 @@ public abstract class BaseObserver<T> implements Observer<BaseResult<T>> {
     @Override
     public void onError(Throwable e) {
 
-        if (mData!=null && !TextUtils.isEmpty(mData.cacheKey)) {
+        String json = "";
+        if (mData != null && !TextUtils.isEmpty(mData.cacheKey)) {
             if (!NetworkUtil.isNetworkAvailable(context)) {
                 KLog.e(tag, "当前没有网。。");
+
+                if (mData.cachePage == -1) {
+                    if (SPUtils.getInstance(SP_DEFULT_CACHE_SP).contains(mData.cacheKey)) {
+                        KLog.e(tag, "读取 非分页方式。缓存。。");
+                        json = SPUtils.getInstance(SP_DEFULT_CACHE_SP).getString(mData.cacheKey);
+                        KLog.json(json);
+                        try {
+                            String data = new JSONObject(json).getString("data");
+                            T savedata = GsonUtils.fromLocalJson(data, t);
+                            mData.data = savedata;
+
+                        } catch (JSONException e1) {
+                            e1.printStackTrace();
+                        }
+                    }
+                } else {
+                    if (SPUtils.getInstance("sp_" + mData.cacheKey).contains(mData.cachePage + "")) {
+                        KLog.e(tag, "读取 分页方式。缓存。。");
+                        json = SPUtils.getInstance("sp_" + mData.cacheKey).getString(mData.cacheKey);
+                        try {
+                            String data = new JSONObject(json).getString("data");
+                            T savedata = GsonUtils.fromLocalJson(data, t);
+                            mData.data = savedata;
+
+                            int count = new JSONObject(json).getInt("count");
+                            mData.count = count;
+
+                        } catch (JSONException e1) {
+                            e1.printStackTrace();
+                        }
+                    }
+                }
             }
         }
 
 
         hideLoading();
-        onLoadFail(e);
+        if (!TextUtils.isEmpty(json)) {
+            onLoadSuccess(mData.data, mData.count);
+        } else {
+            onLoadFail(e);
+        }
 
     }
 
