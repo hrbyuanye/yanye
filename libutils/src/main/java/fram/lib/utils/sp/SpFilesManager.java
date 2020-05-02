@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 
+import java.lang.reflect.Field;
 import java.util.Map;
 import java.util.Set;
 
@@ -74,6 +75,7 @@ public class SpFilesManager {
      * SP中清除所有数据
      */
     private static void clear(SharedPreferences sp) {
+
         sp.edit().clear().apply();
     }
 
