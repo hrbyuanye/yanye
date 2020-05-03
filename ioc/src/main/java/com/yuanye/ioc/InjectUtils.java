@@ -2,11 +2,15 @@ package com.yuanye.ioc;
 
 import android.view.View;
 
+import com.yuanye.ioc.annotation.BaseListener;
 import com.yuanye.ioc.annotation.ContontView;
 import com.yuanye.ioc.annotation.ViewInject;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
 
 public class InjectUtils {
 
@@ -67,15 +71,63 @@ public class InjectUtils {
     /**
      * setClick
      */
-    public static void intClick(Object activity) {
+    public static void intClick(final Object activity) {
 //        1. 获取所有方法
 
         Class<?> aClass = activity.getClass();
-        Method [] methods = aClass.getDeclaredMethods();
+        Method[] methods = aClass.getDeclaredMethods();
 //        2.查找当前的 方法是否包含 事件的 注解 --》BaseListener
-        for (Method method : methods){
+        for (final Method acMethod : methods) {
+
+            Annotation[] annotations = acMethod.getAnnotations(); //获取方法上的注解
+            for (Annotation annotation : annotations) {
+
+//                3. 获取注解字节码 判断是否有BaseListener的注解
+//                 Class<?> annotationClass = annotation.getClass();
+                Class<?> annotationClass = annotation.annotationType();
+                BaseListener baseListener = annotationClass.getAnnotation(BaseListener.class);
+
+                if (baseListener == null) {
+                    continue;
+                }
 
 
+//                4.设置 setClick事件
+                String setListener = baseListener.setListener();
+                Class<?> listenerType = baseListener.listenerType();
+                String callMethod = baseListener.callMethod();
+
+//                5. 获取注解上的values
+                //子类注解 可以认为是个普通类
+                try {
+                    Method methodVaule = annotationClass.getDeclaredMethod("value");
+                    int[] viewIds = (int[]) methodVaule.invoke(annotation);
+
+                    for (int id : viewIds) {
+                        Method findViewById = aClass.getMethod("findViewById", int.class);
+
+                        View view = (View) findViewById.invoke(activity, id);
+
+                        Object proxyInstance = Proxy.newProxyInstance(listenerType.getClassLoader(), new Class[]{listenerType}, new InvocationHandler() {
+                            @Override
+                            public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+
+
+                                System.out.println(" method.getName():"+ method.getName());
+                                return acMethod.invoke(activity, args);
+                            }
+                        });
+
+                        //设置 view .setOnclickListener
+                       Method setClickMethod = view.getClass().getMethod(setListener ,listenerType) ;
+                        setClickMethod.invoke(view ,proxyInstance) ;
+
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            }
         }
 
     }
