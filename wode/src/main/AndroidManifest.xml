@@ -10,7 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".WodeMainActivity" />
-        <activity android:name=".activity.NetTeastActivity"/>
+        <activity android:name=".activity.NetTeastActivity" />
+        <activity android:name=".activity.EduUiActivity" />
+
     </application>
 
 </manifest>

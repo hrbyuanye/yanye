@@ -3,11 +3,12 @@ package frame.com.wode.activity;
 import android.view.View;
 
 import frame.com.libcommon.base.BaseActivity;
+import frame.com.wode.R;
 
-public class Tesraaa extends BaseActivity {
+public class EduUiActivity extends BaseActivity {
     @Override
     public View bindLayout() {
-        return null;
+        return inflate(R.layout.activity_wode_edu_ui);
     }
 
     @Override
