@@ -27,7 +27,7 @@ public class ApiBase {
     //超时时间
     private static final int DEFAULT_TIMEOUT = 20;
     //缓存时间
-    private static final int CACHE_TIMEOUT = 10 * 1024 * 1024;
+    private static final int CACHE_SIZE = 10 * 1024 * 1024;
     private Cache cache = null;
     private File httpCacheDirectory;
     private Context context ;
@@ -62,7 +62,7 @@ public class ApiBase {
 
         try {
             if (cache == null) {
-                cache = new Cache(httpCacheDirectory, CACHE_TIMEOUT);
+                cache = new Cache(httpCacheDirectory, CACHE_SIZE);
             }
         } catch (Exception e) {
             KLog.e("Could not create http cache", e);
@@ -73,7 +73,7 @@ public class ApiBase {
                 .connectTimeout(15, TimeUnit.SECONDS)
                 .readTimeout(15, TimeUnit.SECONDS)
                 .writeTimeout(15, TimeUnit.SECONDS);
-
+        okHttpClient.cache(cache) ;
         okHttpClient.addInterceptor(new CacheInterceptor(context)) ;
         /*可以统一添加网络参数到请求头*/
         okHttpClient.addInterceptor(sHttpsRequestInterceptor);

@@ -42,18 +42,30 @@ public class WodeNetTestActivityPresenter extends BasePresenter<WoDeTestNetAcriv
     public void getUserInfo(String account) {
         BaseCachedData<UserInfo> cachedData = new BaseCachedData<>() ;
         cachedData.cacheKey = "user_info" ;
+//        mModel.getUserInfo(account, new BaseObserver<UserInfo>(BaseApplication.getApplication()) {
+//            @Override
+//            public void onLoadSuccess(UserInfo userInfo, int couts) {
+//
+//                KLog.e("userInfo",userInfo.toString());
+//            }
+//
+//            @Override
+//            public void onLoadFail(Throwable throwable) {
+//                ToastUtils.showShort(throwable.getMessage());
+//
+//            }
+//        }.setLoadView(mView).setCacheData(cachedData ,UserInfo.class));
         mModel.getUserInfo(account, new BaseObserver<UserInfo>(BaseApplication.getApplication()) {
             @Override
             public void onLoadSuccess(UserInfo userInfo, int couts) {
 
-                KLog.e("userInfo",userInfo.toString());
+                KLog.e("onLoadSuccess .."+userInfo.toString());
             }
 
             @Override
             public void onLoadFail(Throwable throwable) {
-                ToastUtils.showShort(throwable.getMessage());
 
             }
-        }.setLoadView(mView).setCacheData(cachedData ,UserInfo.class));
+        }.setLoadView(mView));
     }
 }
